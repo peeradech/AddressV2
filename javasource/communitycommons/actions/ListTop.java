@@ -9,41 +9,42 @@
 
 package communitycommons.actions;
 
-import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
+import com.mendix.systemwideinterfaces.core.IMendixObject;
 import com.mendix.webui.CustomJavaAction;
+import communitycommons.Misc;
 
 /**
- * Decrypts an AES encrypted string.
- * The keylength should exactly be 16 characters (128 bit).
+ * Takes the top n items of a given list and returns the resulting list.
  */
-public class EncryptString extends CustomJavaAction<java.lang.String>
+public class ListTop extends CustomJavaAction<java.util.List<IMendixObject>>
 {
-	private java.lang.String valueToEncrypt;
-	private java.lang.String key;
+	private java.util.List<IMendixObject> ObjectList;
+	private java.lang.Long Top;
 
-	public EncryptString(IContext context, java.lang.String valueToEncrypt, java.lang.String key)
+	public ListTop(IContext context, java.util.List<IMendixObject> ObjectList, java.lang.Long Top)
 	{
 		super(context);
-		this.valueToEncrypt = valueToEncrypt;
-		this.key = key;
+		this.ObjectList = ObjectList;
+		this.Top = Top;
 	}
 
 	@java.lang.Override
-	public java.lang.String executeAction() throws Exception
+	public java.util.List<IMendixObject> executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		return StringUtils.encryptString(key, valueToEncrypt);
+		return Misc.listTop(ObjectList, Top.intValue());
 		// END USER CODE
 	}
 
 	/**
 	 * Returns a string representation of this action
+	 * @return a string representation of this action
 	 */
 	@java.lang.Override
 	public java.lang.String toString()
 	{
-		return "EncryptString";
+		return "ListTop";
 	}
 
 	// BEGIN EXTRA CODE

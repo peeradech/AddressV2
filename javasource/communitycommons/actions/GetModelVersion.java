@@ -9,41 +9,36 @@
 
 package communitycommons.actions;
 
-import communitycommons.StringUtils;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
+import communitycommons.Misc;
 
 /**
- * Applies AES encryption to the value string using a symmetric key. 
- * The keylength should exactly be 16 characters (128 bit).
+ * Returns the model version of the deployed application.
  */
-public class DecryptString extends CustomJavaAction<java.lang.String>
+public class GetModelVersion extends CustomJavaAction<java.lang.String>
 {
-	private java.lang.String valueToDecrypt;
-	private java.lang.String key;
-
-	public DecryptString(IContext context, java.lang.String valueToDecrypt, java.lang.String key)
+	public GetModelVersion(IContext context)
 	{
 		super(context);
-		this.valueToDecrypt = valueToDecrypt;
-		this.key = key;
 	}
 
 	@java.lang.Override
 	public java.lang.String executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		return StringUtils.decryptString(key, valueToDecrypt);
+		return Misc.getModelVersion();
 		// END USER CODE
 	}
 
 	/**
 	 * Returns a string representation of this action
+	 * @return a string representation of this action
 	 */
 	@java.lang.Override
 	public java.lang.String toString()
 	{
-		return "DecryptString";
+		return "GetModelVersion";
 	}
 
 	// BEGIN EXTRA CODE

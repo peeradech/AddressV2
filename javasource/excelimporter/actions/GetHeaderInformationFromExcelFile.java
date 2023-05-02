@@ -35,9 +35,9 @@ public class GetHeaderInformationFromExcelFile extends CustomJavaAction<java.lan
 	@java.lang.Override
 	public java.lang.Boolean executeAction() throws Exception
 	{
-		this.TemplateObject = __TemplateObject == null ? null : excelimporter.proxies.Template.initialize(getContext(), __TemplateObject);
+		this.TemplateObject = this.__TemplateObject == null ? null : excelimporter.proxies.Template.initialize(getContext(), __TemplateObject);
 
-		this.ExcelFileDocument = __ExcelFileDocument == null ? null : excelimporter.proxies.TemplateDocument.initialize(getContext(), __ExcelFileDocument);
+		this.ExcelFileDocument = this.__ExcelFileDocument == null ? null : excelimporter.proxies.TemplateDocument.initialize(getContext(), __ExcelFileDocument);
 
 		// BEGIN USER CODE
 		ExcelImporter.getColumns(this.getContext(), this.TemplateObject.getMendixObject(), this.ExcelFileDocument.getMendixObject() );
@@ -47,6 +47,7 @@ public class GetHeaderInformationFromExcelFile extends CustomJavaAction<java.lan
 
 	/**
 	 * Returns a string representation of this action
+	 * @return a string representation of this action
 	 */
 	@java.lang.Override
 	public java.lang.String toString()
